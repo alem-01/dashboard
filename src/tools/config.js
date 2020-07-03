@@ -4,7 +4,7 @@
 
 const prod = {
     URL: `https://dashboard.alem.school`,
-    API_URL: `https://api.alem.school`,
+    API_URL: `https://dashboard.alem.school/api`,
     AUTH_URL: `https://email-trigger.alem.school/auth/dashboard`,
     CLIENT_ID: `d02ae1b0-9b05-4b24-ad87-1ef2a9ea2559`,
 }
