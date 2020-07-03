@@ -1,0 +1,16 @@
+section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.box h2 {
+    border-bottom: 1px solid #ddd;
+    margin: -15px -15px 15px -15px;
+    padding: 12px 15px;
+}
+
+@media (max-width: 768px) {
+    section {
+		padding: 0 1rem;
+	}
+}
