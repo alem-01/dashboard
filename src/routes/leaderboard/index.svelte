@@ -2,13 +2,12 @@
   import { customFetch } from "../../tools/auth";
   import config from "../../tools/config";
   export async function preload(page, session) {
-    const resp = await customFetch(
-      `${config.API_URL}/leaderboard`,
-      {},
-      this.fetch
-    );
+    const resp = await customFetch(`${config.API_URL}/leaderboard`, {}, this.fetch);
     const data = await resp.json();
-    const students = data.users;
+    const students = data.users.map(user => {
+      user._url_ = `/user/${user.id}`
+      return user
+    });
     return { students };
   }
 </script>
@@ -31,6 +30,14 @@
     if (grade >= 0.2) return "hsl(35, 100%, 50%)";
     return "hsl(340, 100%, 60%)";
   };
+
+  const columns = {
+    githubLogin: 'Login',
+    firstName: 'Name',
+    lastName: 'Surname',
+    xp: 'XP',
+    audits: 'Audits'
+  }
 </script>
 
 <svelte:head>
@@ -41,10 +48,9 @@
   <div class="container">
     <Table
       bind:data={students}
-      defaultSortKey={'xp'}
-      thresholdMode={true}
-      thresholdKey={'xp'}
-      isSafeFunction={CellBackground}
-      urlKey={'id'} />
+      {columns}
+      sortkey={'xp'}
+      threshold={'xp'}
+      colorCellFunction={CellBackground}/>
   </div>
 </section>

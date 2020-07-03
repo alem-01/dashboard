@@ -1,26 +1,19 @@
 <script>
   export let data = [];
-  export let ignoreKeys = [];
-  export let defaultSortKey;
-  export let thresholdKey = "";
-  export let isSafeFunction = null;
-  export let urlKey = "";
+  export let columns = {};
+  export let sortkey;
+  export let threshold = "";
+  export let colorCellFunction = null;
 
-  let sortedData = [];
   let displayData = [];
-  let keys = [];
+  let sortedData = [];
   let reload = false;
   let search = "";
-  let sortKey = defaultSortKey;
+  let sortKey = sortkey;
   let reverse = true;
 
   // init function initiates values.
   function init() {
-    if (data.length > 0) {
-      keys = Object.keys(data[0]).filter(elem => {
-        return !ignoreKeys.includes(elem);
-      });
-    }
     reload = true;
     sortTable(sortKey);
   }
@@ -77,8 +70,8 @@
     });
   }
 
-  function isSafe(xp) {
-    return isSafeFunction(xp);
+  function colorCell(xp) {
+    return colorCellFunction(xp);
   }
 
   $: if (data) {
@@ -98,6 +91,16 @@
   table {
     border-collapse: collapse;
     width: 100%;
+    position: relative;
+  }
+
+  .rowlink::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5em; /* don't forget to set the height! */
   }
 </style>
 
@@ -124,28 +127,26 @@
   <thead>
     <tr>
       <th>№</th>
-      {#each keys as key (key)}
+      {#each Object.keys(columns) as key (key)}
         <th
           on:click={() => {
             sortTable(key);
           }}>
-          {key}
+          {columns[key]}
         </th>
       {/each}
     </tr>
   </thead>
   <tbody>
     {#each displayData as element, index (element.id)}
-      <tr style="background:{isSafe(element[thresholdKey])}">
+      <tr style="background:{colorCell(element[threshold])}">
         <td>
-          {#if urlKey != ''}
-            <a href="/user/{element[urlKey]}">{index + 1}</a>
+          {#if '_url_' in element}
+            <a class="rowlink" href={element._url_}>{index + 1}</a>
           {:else}{index + 1}{/if}
         </td>
-        {#each Object.keys(element) as key (key)}
-          {#if !ignoreKeys.includes(key)}
-            <td>{element[key]}</td>
-          {/if}
+        {#each Object.keys(columns) as key (key)}
+          <td>{element[key]}</td>
         {/each}
       </tr>
     {:else}

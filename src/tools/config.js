@@ -11,7 +11,7 @@ const prod = {
 
 const dev = {
     URL: `http://localhost:3000`,
-    API_URL: `http://localhost:3030`,
+    API_URL: `http://localhost:3030/api`,
     AUTH_URL: `https://email-trigger.alem.school/auth/dashboard_test`,
     CLIENT_ID: `1dce8297-b3d8-43bb-93f8-9416eec6dc87`
 }
