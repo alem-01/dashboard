@@ -1,0 +1,7 @@
+version: '3'
+services:
+  dashboard:
+    build: .
+    restart: always
+    ports: 
+    - 4030:3000
