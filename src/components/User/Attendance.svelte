@@ -11,7 +11,8 @@
   } from "./attendance";
 
   export let attendance;
-  const timeSpent = fillDays(attendance.attendance);
+  
+  const timeSpent = (attendance) ? fillDays(attendance.attendance) : {};
   let calendarTable;
   let calendar;
 

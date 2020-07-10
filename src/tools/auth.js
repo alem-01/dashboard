@@ -7,7 +7,10 @@ export function customFetch(url, data={}, fn=fetch) {
             throw new Error(resp.statusText)
         return resp
     }).catch(err => {
-        console.log('Error customFetch: ', err);
+        console.log('Error customFetch: ', err, url);
+        return {
+            json: () => {}
+        }
     })
     return fetchPromise
 }

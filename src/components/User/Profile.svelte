@@ -23,9 +23,11 @@
 
 <div class="columns">
   <div class="column is-one-quarter">
+    {#if avatar}
     <img
       src="data:image/png;base64, {avatar.image}"
       alt={profile.profile.github_login} />
+    {/if}
   </div>
   <div class="column">
     <h1>
