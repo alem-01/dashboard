@@ -36,7 +36,8 @@
     firstName: 'Name',
     lastName: 'Surname',
     xp: 'XP',
-    audits: 'Audits'
+    audits: 'Audits',
+    generation: 'Generation',
   }
 </script>
 
