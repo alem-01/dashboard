@@ -1,5 +1,5 @@
 const robots = {
-    UserAgent: '*',
+    'User-agent': '*',
     Disallow: '/'
 }
 
