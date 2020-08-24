@@ -1,11 +1,21 @@
 <script context="module">
   import { customFetch } from "../../tools/auth";
+  import { toSize } from "../../components/User/user";
   import config from "../../tools/config";
   export async function preload(page, session) {
     const resp = await customFetch(`${config.API_URL}/leaderboard`, {}, this.fetch);
     const data = await resp.json();
     const students = data.users.map(user => {
       user._url_ = `/user/${user.id}`
+      user.xp = parseInt(user.xp)
+      if (isNaN(user.xp)) {
+        user.xp = 0
+      }
+      user.size = toSize(user.xp)
+      user.audit_ratio = Math.round((user.up) / (user.down) * 100 * 100) / 100
+      if (isNaN(user.audit_ratio)) {
+        user.audit_ratio = 0
+      }
       return user
     });
     return { students };
@@ -18,8 +28,8 @@
 
   export let students = [];
   const maxXP = students.reduce(
-    (acc, curr) => (curr.xp > acc ? curr.xp : acc),
-    Number.NEGATIVE_INFINITY
+      (acc, curr) => (curr.xp > acc ? curr.xp : acc),
+      Number.NEGATIVE_INFINITY
   );
 
   const CellBackground = xp => {
@@ -33,11 +43,12 @@
 
   const columns = {
     githubLogin: 'Login',
-    firstName: 'Name',
-    lastName: 'Surname',
-    xp: 'XP',
+    firstname: 'Name',
+    lastname: 'Surname',
+    size: 'XP',
     audits: 'Audits',
     generation: 'Generation',
+    audit_ratio: 'Audit Ratio'
   }
 </script>
 

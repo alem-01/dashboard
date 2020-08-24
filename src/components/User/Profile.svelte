@@ -1,18 +1,11 @@
 <script>
   import config from "../../tools/config";
+  import { toSize } from "./user";
   export let profile;
   export let progress;
   export let avatar;
 
   const presence = "";
-
-  const toSize = size => {
-    const e = (Math.log(size) / Math.log(1024)) | 0;
-    const unit = "KMGTPEZY"[e - 1] || "";
-    const num = size / Math.pow(1024, e);
-    const round = Math.round(num);
-    return `${round > 100 ? round : num.toFixed(round > 10 ? 1 : 2)}${unit}B`;
-  };
 </script>
 
 <style>

@@ -4,7 +4,7 @@
 
   export async function preload(page, session) {
     const { userId } = page.params;
-    const [profile, avatar, attendance, progress] = await Promise.all([
+    const [profile, avatar, attendance, progress, progress_bar, audit_ratio] = await Promise.all([
       customFetch(`${config.API_URL}/user/${userId}`, {}, this.fetch).then(
         data => data.json()
       ),
@@ -22,9 +22,19 @@
         `${config.API_URL}/user/${userId}/progress`,
         {},
         this.fetch
+      ).then(data => data.json()),
+      customFetch(
+        `${config.API_URL}/user/${userId}/progress_bar`,
+        {},
+        this.fetch
+      ).then(data => data.json()),
+      customFetch(
+        `${config.API_URL}/user/${userId}/audit_ratio`,
+        {},
+        this.fetch
       ).then(data => data.json())
     ]);
-    return { id: userId, profile, avatar, attendance, progress };
+    return { id: userId, profile, avatar, attendance, progress, progress_bar, audit_ratio };
   }
 </script>
 
@@ -33,12 +43,16 @@
   import Profile from "../../../components/User/Profile.svelte";
   import Projects from "../../../components/User/Projects.svelte";
   import Attendance from "../../../components/User/Attendance.svelte";
+  import ProgressBar from "../../../components/User/ProgressBar.svelte";
+  import AuditRatio from "../../../components/User/AuditRatio.svelte";
 
   export let id;
   export let profile;
   export let avatar;
   export let attendance;
   export let progress;
+  export let progress_bar;
+  export let audit_ratio;
 </script>
 
 <style>
@@ -198,10 +212,17 @@
   <div class="container">
     <div class="tile is-ancestor">
       <div class="tile is-vertical">
-        <div class="tile is-parent">
-          <article class="tile is-child box">
-            <Profile {profile} {progress} {avatar} />
-          </article>
+        <div class="tile">
+          <div class="tile is-parent">
+            <article class="tile is-child box">
+              <Profile {profile} {progress} {avatar} />
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child box">
+              <AuditRatio {audit_ratio} />
+            </article>
+          </div>
         </div>
         <div class="tile">
           <div class="tile is-parent">
@@ -214,6 +235,11 @@
               <Attendance {attendance} />
             </article>
           </div>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child box">
+            <ProgressBar {progress_bar} />
+          </article>
         </div>
       </div>
     </div>
