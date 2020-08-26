@@ -205,7 +205,7 @@
 </style>
 
 <svelte:head>
-  <title>{profile.profile.github_login} | dashboard</title>
+  <title>{profile.github_login} | dashboard</title>
 </svelte:head>
 
 <section>

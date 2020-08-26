@@ -9,7 +9,6 @@
     let barChart;
 
     onMount(() => {
-        audit_ratio = audit_ratio.audit_ratio
         const data = Object.entries(audit_ratio).map(([k ,v]) => parseInt(v))
         const labels = Object.entries(audit_ratio).map(([k ,v]) => k)
         console.log(data, labels)

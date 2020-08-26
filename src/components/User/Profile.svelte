@@ -18,29 +18,29 @@
     {#if avatar}
     <img
       src="data:image/png;base64, {avatar.image}"
-      alt={profile.profile.github_login} />
+      alt={profile.github_login} />
     {/if}
   </div>
   <div class="column">
     <h1>
       <span class="legend {presence}" />
-      {profile.profile.first_name}
-      <strong>"{profile.profile.github_login}"</strong>
-      {profile.profile.last_name}
+      {profile.first_name}
+      <strong>"{profile.github_login}"</strong>
+      {profile.last_name}
     </h1>
 
     <div class="info">
       <p>
         <span class="tag is-light">
           <i class="fas fa-phone" />
-          {profile.profile.tel}
+          {profile.tel}
         </span>
       </p>
       <div class="field is-grouped is-grouped-multiline">
         <div class="control">
           <div class="tags has-addons">
             <span class="tag">
-              {toSize(progress.progress.xp.aggregate.sum.amount)}
+              {toSize(progress.xp.aggregate.sum.amount)}
             </span>
             <span class="tag is-dark">xp</span>
           </div>
@@ -48,7 +48,7 @@
 
         <div class="control">
           <div class="tags has-addons">
-            <span class="tag">{progress.progress.audits.aggregate.count}</span>
+            <span class="tag">{progress.audits.aggregate.count}</span>
             <span class="tag is-dark">audits</span>
           </div>
         </div>

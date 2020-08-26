@@ -1,6 +1,6 @@
 <script>
     export let progress
-    const projects = progress.progress.progresses
+    const projects = progress.progresses
 </script>
 
 <style>

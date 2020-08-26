@@ -9,7 +9,6 @@
     let lineChart;
 
     onMount(() => {
-        progress_bar = progress_bar.progress_bar
         for (let i = 0; i < progress_bar.length; i++) {
             progress_bar[i].sum = parseInt(progress_bar[i].sum)
             progress_bar[i].size = toSize(progress_bar[i].sum)
