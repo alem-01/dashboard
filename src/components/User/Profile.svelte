@@ -4,7 +4,6 @@
   export let profile;
   export let progress;
   export let avatar;
-
   const presence = "";
 </script>
 
