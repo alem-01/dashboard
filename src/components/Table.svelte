@@ -115,7 +115,15 @@
   }
 </style>
 
-<div class="control" />
+
+<div class="field is-horizontal">
+  <div class="buttons">
+    <button class="button is-rounded" on:click={showAll}>All</button>
+    {#each generations as gen}
+          <button class="button is-rounded" on:click={filterPiscine(gen)}>{gen.replace(",", "|")}</button>
+    {/each}
+  </div>
+</div>
 
 <div class="field is-horizontal">
   <div class="field-label is-normal">
@@ -131,15 +139,6 @@
           placeholder="search..." />
       </p>
     </div>
-  </div>
-</div>
-
-<div class="field is-horizontal" style="margin-top: 3rem;">
-  <div class="buttons">
-    <button class="button is-rounded" on:click={showAll}>All</button>
-    {#each generations as gen}
-          <button class="button is-rounded" on:click={filterPiscine(gen)}>{gen.replace(",", "|")}</button>
-    {/each}
   </div>
 </div>
 

@@ -3,10 +3,8 @@
   import { toSize } from "../../components/User/user";
   import config from "../../tools/config";
 
-  export async function preload(page, session) {
-    const resp = await customFetch(`${config.API_URL}/leaderboard`, {}, this.fetch);
-    const data = await resp.json();
-    const students = data.users.map(user => {
+  const processStudents = students => {
+    return students.map(user => {
       user._url_ = `/user/${user.githubLogin}`
       user.xp = parseInt(user.xp)
       if (isNaN(user.xp)) {
@@ -23,6 +21,12 @@
       }
       return user
     });
+  }
+
+  export async function preload(page, session) {
+    const resp = await customFetch(`${config.API_URL}/leaderboard`, {}, this.fetch);
+    const data = await resp.json();
+    const students = processStudents(data.users)
     return { students };
   }
 </script>
@@ -34,27 +38,10 @@
   export let students = [];
   export let generations = [];
 
-  $: if (students) {
-    makeGenerations();
-  }
-
-//titles for buttons to filter students by piscine date
-  const makeGenerations = () => {
-    generations = students.map(a => a.generation).filter((value, index, self) => self.indexOf(value) === index)
-  }
-  const maxXP = students.reduce(
+  let maxXP = students.reduce(
       (acc, curr) => (curr.xp > acc ? curr.xp : acc),
       Number.NEGATIVE_INFINITY
   );
-
-  const cellBackground = xp => {
-    const grade = xp / maxXP;
-    if (grade >= 0.8) return "hsl(185, 100%, 50%)";
-    if (grade >= 0.6) return "hsl(170, 100%, 35%)";
-    if (grade >= 0.4) return "hsl(60, 100%, 50%)";
-    if (grade >= 0.2) return "hsl(35, 100%, 50%)";
-    return "hsl(340, 100%, 60%)";
-  };
 
   const columns = {
     githubLogin: 'Login',
@@ -71,6 +58,34 @@
       render: val => `<span style="background-color: ${cellBackground(val)}; border-radius: 100%; width: 10px; height: 10px; display: inline-block"></span>`
     }
   }
+
+  const fetchLeaderboard = async (cursus) => {
+    const resp = await customFetch(`${config.API_URL}/leaderboard?cursus=${cursus}`, {}, fetch);
+    const data = await resp.json();
+    const tmp = processStudents(data.users)
+    students = tmp
+    maxXP = students.reduce(
+        (acc, curr) => (curr.xp > acc ? curr.xp : acc),
+        Number.NEGATIVE_INFINITY
+    );
+  }
+
+  const makeGenerations = () => {
+    generations = students.map(a => a.generation).filter((value, index, self) => self.indexOf(value) === index)
+  }
+  
+  const cellBackground = xp => {
+    const grade = xp / maxXP;
+    if (grade >= 0.8) return "hsl(185, 100%, 50%)";
+    if (grade >= 0.6) return "hsl(170, 100%, 35%)";
+    if (grade >= 0.4) return "hsl(60, 100%, 50%)";
+    if (grade >= 0.2) return "hsl(35, 100%, 50%)";
+    return "hsl(340, 100%, 60%)";
+  };
+
+  $: if (students) {
+    makeGenerations();
+  }
 </script>
 
 <svelte:head>
@@ -79,6 +94,14 @@
 
 <section>
   <div class="container">
+    <div class="field is-horizontal" style="margin-top: 3rem;">
+      <div class="buttons">
+        <button class="button is-rounded" on:click="{() => fetchLeaderboard('Div 01')}">Div 01</button>
+        <button class="button is-rounded" on:click="{() => fetchLeaderboard('Piscine Go')}">Piscine Go</button>
+        <button class="button is-rounded" on:click="{() => fetchLeaderboard('Piscine JS')}">Piscine JS</button>
+      </div>
+    </div>
+
     <Table
       bind:data={students}
       {generations}
