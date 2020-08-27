@@ -57,7 +57,7 @@
       <p>
         <a
           class="button is-light"
-          href={`${config.URL}/user/${profile.id}/piscine`}>
+          href={`${config.URL}/user/${profile.github_login}/piscine`}>
           piscine
         </a>
       </p>
