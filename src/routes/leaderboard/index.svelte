@@ -32,6 +32,16 @@
   import Table from "../../components/Table.svelte";
 
   export let students = [];
+  export let generations = [];
+
+  $: if (students) {
+    makeGenerations();
+  }
+
+//titles for buttons to filter students by piscine date
+  const makeGenerations = () => {
+    generations = students.map(a => a.generation).filter((value, index, self) => self.indexOf(value) === index)
+  }
   const maxXP = students.reduce(
       (acc, curr) => (curr.xp > acc ? curr.xp : acc),
       Number.NEGATIVE_INFINITY
@@ -71,6 +81,7 @@
   <div class="container">
     <Table
       bind:data={students}
+      {generations}
       {columns}
       sortkey={'xp'}
       threshold={'xp'}/>

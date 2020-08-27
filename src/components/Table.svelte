@@ -1,6 +1,7 @@
 <script>
   export let data = [];
   export let columns = {};
+  export let generations = {}
   export let sortkey;
   export let threshold = "";
   export let colorCellFunction = null;
@@ -16,7 +17,7 @@
   function init() {
     reload = true;
     sortTable(sortKey);
-  }
+}
 
   // sortTable function sorts the display array by key
   // If second time clicked on the same key, then reverses the array.
@@ -76,6 +77,7 @@
 
   $: if (data) {
     init();
+    // console.log(data)
   }
 
   $: if (search) {
@@ -85,6 +87,15 @@
   $: if (sortedData) {
     searchTable(search);
   }
+
+  const showAll = () => {
+    displayData = data
+  }
+
+  const filterPiscine = (gen) => {
+    displayData = data.filter(x => x.generation == gen)
+  }
+  
 </script>
 
 <style>
@@ -120,6 +131,15 @@
           placeholder="search..." />
       </p>
     </div>
+  </div>
+</div>
+
+<div class="field is-horizontal" style="margin-top: 3rem;">
+  <div class="buttons">
+    <button class="button is-rounded" on:click={showAll}>All</button>
+    {#each generations as gen}
+          <button class="button is-rounded" on:click={filterPiscine(gen)}>{gen.replace(",", "|")}</button>
+    {/each}
   </div>
 </div>
 
