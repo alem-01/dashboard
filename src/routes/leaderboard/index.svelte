@@ -6,12 +6,15 @@
     const resp = await customFetch(`${config.API_URL}/leaderboard`, {}, this.fetch);
     const data = await resp.json();
     const students = data.users.map(user => {
-      user._url_ = `/user/${user.id}`
+      user._url_ = `/user/${user.githubLogin}`
       user.xp = parseInt(user.xp)
       if (isNaN(user.xp)) {
         user.xp = 0
       }
       user.size = toSize(user.xp)
+
+      user.down = parseInt(user.down)
+      user.up = parseInt(user.up)
       user.audit_ratio = Math.round((user.up) / (user.down) * 100 * 100) / 100
       if (isNaN(user.audit_ratio)) {
         user.audit_ratio = 0
@@ -43,12 +46,15 @@
 
   const columns = {
     githubLogin: 'Login',
-    firstname: 'Name',
-    lastname: 'Surname',
-    size: 'XP',
-    audits: 'Audits',
     generation: 'Generation',
-    audit_ratio: 'Audit Ratio'
+    audit_ratio: {
+      title: 'Audit Ratio',
+      render: val => `${val}%`
+    },
+    xp: {
+      title: 'XP',
+      render: val => toSize(val)
+    }
   }
 </script>
 

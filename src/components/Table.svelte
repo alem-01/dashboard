@@ -132,7 +132,11 @@
           on:click={() => {
             sortTable(key);
           }}>
-          {columns[key]}
+          {#if typeof columns[key] === 'string'}
+            {columns[key]}
+          {:else}
+            {columns[key].title}
+          {/if}
         </th>
       {/each}
     </tr>
@@ -146,7 +150,13 @@
           {:else}{index + 1}{/if}
         </td>
         {#each Object.keys(columns) as key (key)}
-          <td>{element[key]}</td>
+          <td>
+            {#if typeof columns[key] === 'object'}
+              {columns[key].render(element[key])}
+            {:else}
+              {element[key]}
+            {/if}
+          </td>
         {/each}
       </tr>
     {:else}

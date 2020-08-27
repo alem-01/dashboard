@@ -10,7 +10,7 @@
       ),
       customFetch(
         `${config.API_URL}/user/${userId}/avatar`,
-        {},
+        {cache: 'force-cache'},
         this.fetch
       ).then(data => data.json()),
       customFetch(
