@@ -2,6 +2,7 @@
   import { customFetch } from "../../tools/auth";
   import { toSize } from "../../components/User/user";
   import config from "../../tools/config";
+
   export async function preload(page, session) {
     const resp = await customFetch(`${config.API_URL}/leaderboard`, {}, this.fetch);
     const data = await resp.json();
@@ -11,7 +12,8 @@
       if (isNaN(user.xp)) {
         user.xp = 0
       }
-      user.size = toSize(user.xp)
+      user.progress = user.xp
+      user.color = user.xp
 
       user.down = parseInt(user.down)
       user.up = parseInt(user.up)
@@ -35,7 +37,7 @@
       Number.NEGATIVE_INFINITY
   );
 
-  const CellBackground = xp => {
+  const cellBackground = xp => {
     const grade = xp / maxXP;
     if (grade >= 0.8) return "hsl(185, 100%, 50%)";
     if (grade >= 0.6) return "hsl(170, 100%, 35%)";
@@ -46,14 +48,17 @@
 
   const columns = {
     githubLogin: 'Login',
-    generation: 'Generation',
-    audit_ratio: {
-      title: 'Audit Ratio',
-      render: val => `${val}%`
+    progress: {
+      title: 'Progress',
+      render: val => `<progress class="progress is-primary" value="${val}" max="${maxXP}">${val}%</progress>`
     },
     xp: {
       title: 'XP',
       render: val => toSize(val)
+    },
+    color: {
+      title: '',
+      render: val => `<span style="background-color: ${cellBackground(val)}; border-radius: 100%; width: 10px; height: 10px; display: inline-block"></span>`
     }
   }
 </script>
@@ -68,7 +73,6 @@
       bind:data={students}
       {columns}
       sortkey={'xp'}
-      threshold={'xp'}
-      colorCellFunction={CellBackground}/>
+      threshold={'xp'}/>
   </div>
 </section>

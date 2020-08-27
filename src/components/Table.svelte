@@ -70,9 +70,9 @@
     });
   }
 
-  function colorCell(xp) {
-    return colorCellFunction(xp);
-  }
+  // function colorCell(xp) {
+  //   return colorCellFunction(xp);
+  // }
 
   $: if (data) {
     init();
@@ -126,9 +126,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th>№</th>
+      <th width="10">№</th>
       {#each Object.keys(columns) as key (key)}
-        <th
+        <th 
           on:click={() => {
             sortTable(key);
           }}>
@@ -143,7 +143,7 @@
   </thead>
   <tbody>
     {#each displayData as element, index (element.id)}
-      <tr style="background:{colorCell(element[threshold])}">
+      <tr>
         <td>
           {#if '_url_' in element}
             <a class="rowlink" href={element._url_}>{index + 1}</a>
@@ -152,7 +152,7 @@
         {#each Object.keys(columns) as key (key)}
           <td>
             {#if typeof columns[key] === 'object'}
-              {columns[key].render(element[key])}
+              {@html columns[key].render(element[key])}
             {:else}
               {element[key]}
             {/if}
