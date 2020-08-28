@@ -116,16 +116,17 @@
 </style>
 
 
+<h3 class="chapter-header">Generation</h3>
 <div class="field is-horizontal">
   <div class="buttons">
-    <button class="button is-rounded" on:click={showAll}>All</button>
+    <button class="button button-01 ba-01" on:click={showAll}>All</button>
     {#each generations as gen}
-          <button class="button is-rounded" on:click={filterPiscine(gen)}>{gen.replace(",", "|")}</button>
+          <button class="button button-01 ba-01" on:click={filterPiscine(gen)}>{gen.replace(",", "|")}</button>
     {/each}
   </div>
 </div>
 
-<div class="field is-horizontal">
+<!-- <div class="field is-horizontal">
   <div class="field-label is-normal">
     <label class="label">Search</label>
   </div>
@@ -140,9 +141,9 @@
       </p>
     </div>
   </div>
-</div>
+</div> -->
 
-<table class="table">
+<table class="table box-shadow">
   <thead>
     <tr>
       <th width="10">№</th>

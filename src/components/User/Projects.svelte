@@ -1,35 +1,33 @@
 <script>
     export let progress
-    const projects = progress.progresses
+    $: projects = progress.progresses.reverse()
 </script>
 
 <style>
-  .projects table {
-  clear: both;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  border-collapse: collapse;
-  color: #444;
-}
-.projects td {
-  text-align: left;
-  padding: 3px 1rem;
-  vertical-align: middle;
-  border-right: 1px solid #ddd;
-  border-top: 1px solid #ddd;
-}
+  .projects {
+    overflow-y: scroll;
+    height: 600px;
+  }
+
+  .project {
+    margin: 1rem 0;
+  }
+
 </style>
 
-<div class="projects">
-  <h2>Projects</h2>
-  <div class="calendar-wrapper" style="height:25rem; overflow:auto;">
-    <table>
-      {#each projects as project (project.object.name)}
-        <tr>
-          <td>{project.object.name}</td>
-        </tr>
-      {/each}
-    </table>
+<div class="block ba-01 box-shadow">
+  <h3 class="chapter-header">Projects</h3>
+    
+  <div class="projects">
+    {#each projects.reverse() as project (project.object.name)}
+    <div class="project columns ba-01">
+      <div class="column">
+        <p>{project.object.name}</p>
+      </div>
+      <div class="column is-2">
+        <p class="dark-green" style="float: right;">PASS</p>
+      </div>
+    </div>
+    {/each}
   </div>
 </div>

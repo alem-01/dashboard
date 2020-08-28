@@ -56,33 +56,6 @@
 </script>
 
 <style>
-  p {
-    margin: 0;
-  }
-
-  .profile-header {
-    display: flex;
-  }
-
-  .profile-header img {
-    height: 10rem;
-    border-radius: 5px;
-  }
-
-  .profile-header > div {
-    margin: 0 20px 0 0;
-  }
-
-  .profile-header > div:last-child {
-    margin-right: 0;
-  }
-
-  .legend {
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 100%;
-  }
 
   .in {
     background-color: #2ecc71;
@@ -92,26 +65,6 @@
     background-color: #de8178;
   }
 
-  .projects table {
-    clear: both;
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    border-collapse: collapse;
-    color: #444;
-  }
-  .projects td {
-    text-align: left;
-    padding: 3px 1rem;
-    vertical-align: middle;
-    border-right: 1px solid #ddd;
-    border-top: 1px solid #ddd;
-  }
-
-  .calendar-wrapper {
-    width: 100%;
-    margin: 0em auto;
-  }
   :global(table.calendar) {
     clear: both;
     width: 100%;
@@ -169,39 +122,7 @@
     font-weight: bold;
   }
 
-  /* Tooltip container */
-  :global(.tooltip) {
-    position: relative;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-  }
-
-  /* Tooltip text */
-  :global(.tooltip .tooltiptext) {
-    visibility: hidden;
-    width: 60px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    bottom: 100%;
-    left: 0%;
-    margin-left: -10px;
-
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-  }
-
-  /* Show the tooltip text when you mouse over the tooltip container */
-  :global(.tooltip:hover .tooltiptext) {
-    visibility: visible;
-  }
-
-  :global(.tooltiptext:hover) {
-    visibility: hidden;
-  }
+ 
 </style>
 
 <svelte:head>
@@ -209,6 +130,19 @@
 </svelte:head>
 
 <section>
+  <Profile {profile} {progress} {avatar} />
+  <div class="columns">
+    <div class="column is-3">
+      <Attendance {attendance} />
+      <!-- <AuditRatio {audit_ratio} /> -->
+    </div>
+    <div class="column">
+      <Projects {progress} />
+    </div>
+  </div>
+</section>
+
+<!-- <section>
   <div class="container">
     <div class="tile is-ancestor">
       <div class="tile is-vertical">
@@ -220,7 +154,7 @@
           </div>
           <div class="tile is-parent">
             <article class="tile is-child box">
-              <AuditRatio {audit_ratio} />
+              
             </article>
           </div>
         </div>
@@ -244,4 +178,4 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
