@@ -224,14 +224,13 @@ table.calendar {
   vertical-align: middle;
   border-right: 1px solid #dcdcff;
   border-top: 1px solid #dcdcff;
-  /* width: 14.28571429%; */
+  width: 14.28571429%;
 }
 .calendar td.not-current {
   color: #c0c0c0;
 }
 td.today {
   font-weight: 700;
-  color: white;
   font-size: 1em;
 }
 .calendar thead td {

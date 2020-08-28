@@ -65,36 +65,6 @@
     background-color: #de8178;
   }
 
-  :global(table.calendar) {
-    clear: both;
-    width: 100%;
-    border: 1px solid #dcdcff;
-    border-radius: 3px;
-    border-collapse: collapse;
-    color: #444;
-  }
-  :global(.calendar td) {
-    height: 48px;
-    text-align: center;
-    vertical-align: middle;
-    border-right: 1px solid #dcdcff;
-    border-top: 1px solid #dcdcff;
-    width: 14.28571429%;
-  }
-  :global(.calendar td.not-current) {
-    color: #c0c0c0;
-  }
-  :global(td.today) {
-    font-weight: 700;
-    color: #28283b;
-    font-size: 1em;
-  }
-  :global(.calendar thead td) {
-    border: none;
-    color: #28283b;
-    text-transform: uppercase;
-    font-size: 1em;
-  }
   #btnPrev {
     float: left;
     margin-bottom: 20px;
