@@ -44,29 +44,31 @@
   }
 </style>
 
-<h2>Quests</h2>
-<div class="scrollable">
-  <table>
-    <thead>
-      <tr>
-        <td>success</td>
-        <td>exercise</td>
-        <td>attempts</td>
-      </tr>
-    </thead>
-    {#each Object.keys(quests) as key (key)}
-      <tr>
-        <td colspan="3">
-          <strong>{key}</strong>
-        </td>
-      </tr>
-      {#each Object.keys(quests[key]) as exercise (exercise)}
+<div class="block ba-01 box-shadow">
+  <h2>Quests</h2>
+  <div class="scrollable">
+    <table>
+      <thead>
         <tr>
-          <td>{quests[key][exercise].done ? '✅' : '❌'}</td>
-          <td>{exercise}</td>
-          <td>{quests[key][exercise].attempts + 1}</td>
+          <td>success</td>
+          <td>exercise</td>
+          <td>attempts</td>
         </tr>
+      </thead>
+      {#each Object.keys(quests) as key (key)}
+        <tr>
+          <td colspan="3" style="font-weight: 700; padding: 1rem;">
+            {key}
+          </td>
+        </tr>
+        {#each Object.keys(quests[key]) as exercise (exercise)}
+          <tr>
+            <td>{quests[key][exercise].done ? '✅' : '❌'}</td>
+            <td>{exercise}</td>
+            <td>{quests[key][exercise].attempts + 1}</td>
+          </tr>
+        {/each}
       {/each}
-    {/each}
-  </table>
+    </table>
+  </div>
 </div>

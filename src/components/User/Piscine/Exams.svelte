@@ -56,29 +56,31 @@
   }
 </style>
 
-<h2>Exams</h2>
-<div class="scrollable">
-  <table>
-    <thead>
-      <tr>
-        <td>level</td>
-        <td>exercise</td>
-        <td>xp</td>
-      </tr>
-    </thead>
-    {#each Object.entries(examEvents) as [key, value], i (key)}
-      <tr>
-        <td colspan="3">
-          <strong>{value.name}</strong>
-        </td>
-      </tr>
-      {#each value.transactions as transaction, index (transaction)}
+<div class="block ba-01 box-shadow">
+  <h2>Exams</h2>
+  <div class="scrollable">
+    <table>
+      <thead>
         <tr>
-          <td>{index + 1}</td>
-          <td>{exerciseNames[transaction.attrs.objectId]}</td>
-          <td>{transaction.amount}</td>
+          <td>level</td>
+          <td>exercise</td>
+          <td>xp</td>
         </tr>
+      </thead>
+      {#each Object.entries(examEvents) as [key, value], i (key)}
+        <tr>
+          <td colspan="3" style="font-weight: 700; padding: 1rem;">
+            {value.name}
+          </td>
+        </tr>
+        {#each value.transactions as transaction, index (transaction)}
+          <tr>
+            <td>{index + 1}</td>
+            <td>{exerciseNames[transaction.attrs.objectId]}</td>
+            <td>{transaction.amount}</td>
+          </tr>
+        {/each}
       {/each}
-    {/each}
-  </table>
+    </table>
+  </div>
 </div>

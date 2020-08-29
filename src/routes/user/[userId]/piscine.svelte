@@ -33,41 +33,35 @@
 
 <svelte:head>
     <title>
-        {piscine.user.github_login} | dashboard
+        {piscine.user.github_login} piscine | dashboard
     </title>
 </svelte:head>
 
 
 <section>
-    <div class="container">
-        <h2 class="h2-big">{piscine.user.first_name} <strong>"{piscine.user.github_login}"</strong> {piscine.user.last_name}</h2>
-        <div class="tile is-ancestor">
-            <div class="tile is-vertical">
-                <div class="tile">
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <Toad toad={piscine.toad} />
-                        </article>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <Raids raids={piscine.raid_notes} />
-                        </article>
-                    </div>
-                </div>
-                <div class="tile">
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <Exams exams={piscine.exams} events={piscine.exam_events}/>
-                        </article>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <Quests quests={piscine.quests} />
-                        </article>
-                    </div>
-                </div>
-            </div>
+    <div class="columns is-mobile">
+      <div class="column">
+        <h1 class="student-name">
+          {piscine.user.first_name}
+          {piscine.user.last_name}
+        </h1>
+        <h2>
+          <i class="fas fa-angle-right"></i>&nbsp;
+          {piscine.user.github_login}&nbsp;
+        </h2>
+      </div>
+    </div>
+  <div class="columns">
+    <div class="column is-3">
+      <Toad toad={piscine.toad} />
+      <a class="button button-01 ba-01" href="/user/{piscine.user.github_login}" style="width: 100%;">Profile</a>
+    </div>
+    <div class="column">
+        <Raids raids={piscine.raid_notes} />
+        <div class="columns is-mobile">
+            <div class="column"><Exams exams={piscine.exams} events={piscine.exam_events}/></div>
+            <div class="column"><Quests quests={piscine.quests} /></div>
         </div>
     </div>
+  </div>
 </section>
