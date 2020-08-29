@@ -11,6 +11,7 @@
 
   .project {
     margin: 1rem 0;
+    padding: 1rem;
   }
 
 </style>
@@ -20,12 +21,19 @@
     
   <div class="projects">
     {#each projects as project (project.object.name)}
-    <div class="project columns ba-01">
-      <div class="column">
-        <p>{project.object.name}</p>
-      </div>
-      <div class="column is-2">
-        <p class="dark-green" style="float: right;">PASS</p>
+    <div class="project ba-01">
+
+
+      <div class="level is-mobile">
+        <!-- Left side -->
+        <div class="level-left">
+          <p class="level-item">{project.object.name}</p>
+        </div>
+
+        <!-- Right side -->
+        <div class="level-right">
+          <p class="level-item dark-green">PASS</p>
+        </div>
       </div>
     </div>
     {/each}

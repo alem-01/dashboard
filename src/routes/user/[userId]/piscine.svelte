@@ -58,7 +58,7 @@
     </div>
     <div class="column">
         <Raids raids={piscine.raid_notes} />
-        <div class="columns is-mobile">
+        <div class="columns">
             <div class="column"><Exams exams={piscine.exams} events={piscine.exam_events}/></div>
             <div class="column"><Quests quests={piscine.quests} /></div>
         </div>

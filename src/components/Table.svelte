@@ -103,6 +103,7 @@
     border-collapse: collapse;
     width: 100%;
     position: relative;
+    table-layout: fixed;
   }
 
   .rowlink::before {

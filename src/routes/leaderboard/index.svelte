@@ -44,7 +44,12 @@
   );
 
   const columns = {
-    githubLogin: 'Login',
+    githubLogin: {
+      title: 'Login',
+      render: val => val
+      // render: val => val.length >= 7 ? `${val.slice(0, 7)}...` : val
+      // <span style="background-color: ${cellBackground(val)}; border-radius: 100%; width: 10px; height: 10px; display: inline-block"></span>
+    },
     progress: {
       title: 'Progress',
       render: val => `<progress class="progress is-primary" value="${val}" max="${maxXP}">${val}%</progress>`
@@ -52,10 +57,6 @@
     xp: {
       title: 'XP',
       render: val => toSize(val)
-    },
-    color: {
-      title: '',
-      render: val => `<span style="background-color: ${cellBackground(val)}; border-radius: 100%; width: 10px; height: 10px; display: inline-block"></span>`
     }
   }
 
