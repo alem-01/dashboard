@@ -24,7 +24,7 @@
   }
 </style>
 
-<div class="columns is-vcentered">
+<div class="columns is-vcentered is-mobile">
   <div class="column is-2">
     {#if avatar}
     <img
@@ -34,8 +34,7 @@
     {/if}
   </div>
   <div class="column">
-
-    <div class="columns">
+    <div class="columns is-mobile">
       <div class="column">
         <h1 class="student-name">
           <span class="legend {presence}" />
@@ -68,23 +67,5 @@
         </div>
       </div>
     </div>
-    
-
-    
-
-    
-
-    <!-- <div class="info">
-      <p>
-        <a
-          class="button is-light"
-          href={`${config.URL}/user/${profile.github_login}/piscine`}>
-          piscine
-        </a>
-      </p>
-    </div> -->
-
-
-
   </div>
 </div>

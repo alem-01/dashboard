@@ -77,6 +77,7 @@
     <div class="column is-3">
       <Attendance {attendance} />
       <AuditRatio {audit_ratio} />
+      <a class="button button-01 ba-01" href="/user/{profile.github_login}/piscine" style="width: 100%;">Piscine</a>
     </div>
     <div class="column">
       <ProgressBar {progress_bar} />
