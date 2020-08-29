@@ -94,11 +94,12 @@
 
 <section>
   <div class="container">
-    <div class="field is-horizontal" style="margin-top: 3rem;">
+    <h3 class="chapter-header">Cursus</h3>
+    <div class="field is-horizontal">
       <div class="buttons">
-        <button class="button is-rounded" on:click="{() => fetchLeaderboard('Div 01')}">Div 01</button>
-        <button class="button is-rounded" on:click="{() => fetchLeaderboard('Piscine Go')}">Piscine Go</button>
-        <button class="button is-rounded" on:click="{() => fetchLeaderboard('Piscine JS')}">Piscine JS</button>
+        <button class="button button-01 ba-01" on:click="{() => fetchLeaderboard('Div 01')}">Div 01</button>
+        <button class="button button-01 ba-01" on:click="{() => fetchLeaderboard('Piscine Go')}">Piscine Go</button>
+        <button class="button button-01 ba-01" on:click="{() => fetchLeaderboard('Piscine JS')}">Piscine JS</button>
       </div>
     </div>
 
