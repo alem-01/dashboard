@@ -65,34 +65,6 @@
     background-color: #de8178;
   }
 
-  #btnPrev {
-    float: left;
-    margin-bottom: 20px;
-  }
-  #btnNext {
-    float: right;
-    margin-bottom: 20px;
-  }
-  #btnPrev,
-  #btnNext {
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    color: #c0c0c0;
-    cursor: pointer;
-    font-family: "Roboto Condensed", sans-serif;
-    text-transform: uppercase;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-  }
-  #btnPrev:hover,
-  #btnNext:hover {
-    color: #28283b;
-    font-weight: bold;
-  }
-
- 
 </style>
 
 <svelte:head>
@@ -104,48 +76,12 @@
   <div class="columns">
     <div class="column is-3">
       <Attendance {attendance} />
-      <!-- <AuditRatio {audit_ratio} /> -->
+      <AuditRatio {audit_ratio} />
     </div>
     <div class="column">
+      <ProgressBar {progress_bar} />
       <Projects {progress} />
     </div>
   </div>
 </section>
 
-<!-- <section>
-  <div class="container">
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical">
-        <div class="tile">
-          <div class="tile is-parent">
-            <article class="tile is-child box">
-              <Profile {profile} {progress} {avatar} />
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child box">
-              
-            </article>
-          </div>
-        </div>
-        <div class="tile">
-          <div class="tile is-parent">
-            <article class="tile is-child box">
-              <Projects {progress} />
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child box">
-              <Attendance {attendance} />
-            </article>
-          </div>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child box">
-            <ProgressBar {progress_bar} />
-          </article>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->

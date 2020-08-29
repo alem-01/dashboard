@@ -212,7 +212,7 @@ table {
 table.calendar {
   clear: both;
   width: 100%;
-  border: 1px solid #dcdcff;
+  /* border: 1px solid #dcdcff; */
   border-radius: 3px;
   border-collapse: collapse;
   color: var(--grey2);
@@ -222,8 +222,8 @@ table.calendar {
   height: 48px;
   text-align: center !important;
   vertical-align: middle;
-  border-right: 1px solid #dcdcff;
-  border-top: 1px solid #dcdcff;
+  /* border-right: 1px solid #dcdcff; */
+  /* border-top: 1px solid #dcdcff; */
   width: 14.28571429%;
 }
 .calendar td.not-current {
@@ -235,7 +235,6 @@ td.today {
 }
 .calendar thead td {
   border: none;
-  color: #28283b;
   text-transform: uppercase;
   font-size: 1em;
 }

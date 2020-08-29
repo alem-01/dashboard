@@ -36,6 +36,8 @@
     })
 </script>
 
-<div style="display: block; width: 100%; height: 100%;">
-    <canvas id="barChart"></canvas>
+<div class="block ba-01 box-shadow">
+    <div style="display: block; width: 100%; height: 100%;">
+        <canvas id="barChart"></canvas>
+    </div>
 </div>

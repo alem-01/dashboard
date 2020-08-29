@@ -24,7 +24,8 @@
 <style>
   .calendar-wrapper {
     width: 100%;
-    margin: 0em auto;
+    height: 100%;
+    margin: 1rem auto;
   }
 
   #btnPrev {
@@ -40,18 +41,13 @@
     background: transparent;
     border: none;
     outline: none;
-    font-size: 1em;
+    font-size: 1rem;
     color: #c0c0c0;
     cursor: pointer;
     font-family: "Roboto Condensed", sans-serif;
     text-transform: uppercase;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-  }
-  #btnPrev:hover,
-  #btnNext:hover {
-    color: #28283b;
-    font-weight: bold;
   }
 
 </style>

@@ -19,7 +19,7 @@
   <h3 class="chapter-header">Projects</h3>
     
   <div class="projects">
-    {#each projects.reverse() as project (project.object.name)}
+    {#each projects as project (project.object.name)}
     <div class="project columns ba-01">
       <div class="column">
         <p>{project.object.name}</p>
